@@ -43,7 +43,7 @@ public class CommandRegistry
     {
         try
         {
-            Pattern PATTERN = Pattern.compile("me/Paldiu/NNO/Commands/(Command_[^\\$]+)\\.class");
+            Pattern PATTERN = Pattern.compile("ns/jovial/command/(Command_[^\\$]+)\\.class");
             CodeSource codeSource = Main.class.getProtectionDomain().getCodeSource();
             if (codeSource != null)
             {
@@ -57,7 +57,7 @@ public class CommandRegistry
                     {
                         try
                         {
-                            Class<?> commandClass = Class.forName("me.Paldiu.NNO.Commands." + matcher.group(1));
+                            Class<?> commandClass = Class.forName("ns.jovial.command." + matcher.group(1));
                             if (commandClass.isAnnotationPresent(CommandParameters.class))
                             {
                                 Annotation annotation = commandClass.getAnnotation(CommandParameters.class);
