@@ -23,7 +23,7 @@ public class Command_fuck {
                 return true;
             }
             
-            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> " + t + ", WHAT THE FUCK IS WRONG WITH YOU, YOU FUCKING DUMBASS??");
+            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> " + t.getName() + ", WHAT THE FUCK IS WRONG WITH YOU, YOU FUCKING DUMBASS??");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> YOU'RE ON FUCKING THIN ICE, YOU HEAR ME??");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I WILL RIP YOUR ENTIRE ASS APART, YOU'RE CLOSE TO A PERM BAN!");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I WILL RIP ALL YOUR ORGANS OUT. YOU FUCKING IGNORANT DICK-SUCKING RETARD");
