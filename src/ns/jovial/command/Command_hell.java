@@ -93,6 +93,8 @@ public class Command_hell {
             @Override
             public void run() {
                 
+                Bukkit.broadcastMessage(ChatColor.DARK_RED + "The gates to hell have opened! Let the wrath of " + p.getName() + " condem " + t.getName() + "!");
+                
                 // strike lightning
                 t.getWorld().strikeLightning(t.getLocation());
                 
