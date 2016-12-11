@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import ns.jovial.*;
 import static ns.jovial.Main.plugin;
 import org.bukkit.Bukkit;
-import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -22,7 +21,7 @@ import org.bukkit.util.Vector;
 @CommandParameters(name="hell", description="Unleash hell upon a player!", usage="/<command> <playerName>", permission="nno.hell")
 public class Command_hell {
     private BanList bl;
-    private BanEntry be;
+    private BanList bl2;
     
     public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args, boolean isConsole) {
        
@@ -184,8 +183,11 @@ public class Command_hell {
                 
                 t.setFireTicks(10000);
                 Bukkit.broadcastMessage(ChatColor.DARK_RED + t.getName() + " has been sent to hell!");
+                bl = Bukkit.getBanList(BanList.Type.NAME);
+                bl2 = Bukkit.getBanList(BanList.Type.IP);
+                bl.addBan(t.getName(), ChatColor.RED + "FUCKOFF, and get your shit together!", null, p.getName());
+                bl2.addBan(t.getAddress().getAddress().getHostAddress(), "FUCKOFF, and get your shit together!", null, p.getName());
                 t.kickPlayer(ChatColor.DARK_RED + "WELCOME TO HELL, MOTHERFUCKER.");
-                t.setBanned(true);
             }
         }.runTaskLater(plugin, 5L * 20L);
                 
