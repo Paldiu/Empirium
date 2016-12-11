@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import ns.jovial.*;
 import static ns.jovial.Main.plugin;
 import org.bukkit.Bukkit;
+import org.bukkit.BanEntry;
+import org.bukkit.BanList;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -21,8 +21,13 @@ import org.bukkit.util.Vector;
 
 @CommandParameters(name="hell", description="Unleash hell upon a player!", usage="/<command> <playerName>", permission="nno.hell")
 public class Command_hell {
+    private BanList bl;
+    private BanEntry be;
+    
     public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args, boolean isConsole) {
        
+        int x = 0;
+        
         if (args.length != 1) {
             return false;
         }
@@ -42,19 +47,27 @@ public class Command_hell {
         
         ItemStack hell = new ItemStack(Material.NETHERRACK, 2600);
         ItemMeta hellmeta = hell.getItemMeta();
-        ArrayList<String> lorelist = new ArrayList<String>();
+        ArrayList<String> lorelist = new ArrayList<>();
         hellmeta.setDisplayName(ChatColor.DARK_RED + "" + ChatColor.BOLD + "HELL IS RISING UPON YOU");
         lorelist.add(ChatColor.RED + "" + ChatColor.ITALIC + "Hell is being unleashed upon you by " + sender.getName() + "!");
         lorelist.add(ChatColor.RED + "" + ChatColor.ITALIC + "Expect hell to rise!");
         hellmeta.setLore(lorelist);
         hell.setItemMeta(hellmeta);
         
-        for (Player player : Bukkit.getOnlinePlayers()) {
+        do {
+            Bukkit.getOnlinePlayers().stream().map((player) -> {
             // play some sounds 
             player.playSound(player.getLocation(), Sound.ENTITY_GHAST_SCREAM, 100, 1);
-            player.playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 100, 2);
-            player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 100, 2);
-        }
+            return player;
+            }).map((player) -> {
+                player.playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 100, 2);
+                return player;
+            }).forEachOrdered((player) -> {
+                player.playSound(player.getLocation(), Sound.ENTITY_WITHER_AMBIENT, 100, 2);
+            });
+            
+            x++;
+        } while(x <= 100);
         
         // forcefully close inventory to watch theirself get doomed
         t.closeInventory();
@@ -87,11 +100,10 @@ public class Command_hell {
                 // ignite player
                 t.setFireTicks(10000);
                 
-                for (Player player : Bukkit.getOnlinePlayers()) {
-                    
+                Bukkit.getOnlinePlayers().forEach((player) -> {
                     // play realistic sound of woman screaming to all online players
                     player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
-                }
+                });
                 
                 Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + t.getName() + " - *screams*");
                 
@@ -125,10 +137,10 @@ public class Command_hell {
                 // kill player
                 t.setHealth(0.0);
                 
-                for (Player player : Bukkit.getOnlinePlayers()) {
+                Bukkit.getOnlinePlayers().forEach((player) -> {
                     // play sound effect - woman screaming
                     player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
-                }
+                });
                 
                 // force chat
                 t.chat("No!");
@@ -140,10 +152,12 @@ public class Command_hell {
             public void run() {
                 t.getWorld().strikeLightning(t.getLocation());
                 
-                for (Player player : Bukkit.getOnlinePlayers()) {
+                Bukkit.getOnlinePlayers().stream().map((player) -> {
                     player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
+                    return player;
+                }).forEachOrdered((player) -> {
                     player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 100, 2);
-                }
+                });
                 // shoot player into sky
                 t.setVelocity(t.getVelocity().clone().add(new Vector(0, 50, 0)));
                 
