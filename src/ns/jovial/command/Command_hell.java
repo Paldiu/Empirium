@@ -185,10 +185,14 @@ public class Command_hell {
                 
                 t.setFireTicks(10000);
                 Bukkit.broadcastMessage(ChatColor.DARK_RED + t.getName() + " has been sent to hell!");
-                bl = Bukkit.getBanList(BanList.Type.NAME);
-                bl2 = Bukkit.getBanList(BanList.Type.IP);
-                bl.addBan(t.getName(), ChatColor.RED + "FUCKOFF, and get your shit together!", null, p.getName());
-                bl2.addBan(t.getAddress().getAddress().getHostAddress(), "FUCKOFF, and get your shit together!", null, p.getName());
+                
+                if (t.isOp() == false) {
+                    bl = Bukkit.getBanList(BanList.Type.NAME);
+                    bl2 = Bukkit.getBanList(BanList.Type.IP);
+                    bl.addBan(t.getName(), ChatColor.RED + "FUCKOFF, and get your shit together!", null, p.getName());
+                    bl2.addBan(t.getAddress().getAddress().getHostAddress(), "FUCKOFF, and get your shit together!", null, p.getName());
+                }
+                
                 t.kickPlayer(ChatColor.DARK_RED + "WELCOME TO HELL, MOTHERFUCKER.");
             }
         }.runTaskLater(plugin, 5L * 20L);
