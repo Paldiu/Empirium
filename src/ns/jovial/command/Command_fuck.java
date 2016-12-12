@@ -26,7 +26,7 @@ public class Command_fuck {
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> " + t.getName() + ", WHAT THE FUCK IS WRONG WITH YOU, YOU FUCKING DUMBASS??");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> YOU'RE ON FUCKING THIN ICE, YOU HEAR ME??");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I WILL RIP YOUR ENTIRE ASS APART, YOU'RE CLOSE TO A PERM BAN!");
-            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I WILL RIP ALL YOUR ORGANS OUT. YOU FUCKING IGNORANT DICK-SUCKING RETARD");
+            Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I WILL RIP ALL YOUR ORGANS OUT. FUCKFACE!");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> IF YOU DO THAT SHIT ONE MORE FUCKING TIME, IT'S PERM BAN FUCKING BITCH!!!");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> I BET YOU'RE NOT EVEN LISTENING, YOU PIECE OF FUCKING SHIT! IF YOU DO THAT SHIT AGAIN, IT'S PERM BAN!!");
             Bukkit.broadcastMessage(ChatColor.WHITE + "<" + ChatColor.RED + "Server" + ChatColor.WHITE + "> YOU'RE ON MOTHERFUCKING THIN ICE.");
