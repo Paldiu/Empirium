@@ -106,7 +106,7 @@ public class Command_hell {
                     player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
                 });
                 
-                Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + t.getName() + " - *screams*");
+                Bukkit.broadcastMessage(ChatColor.RED + t.getName() + " - *screams*");
                 
                 // throw the player z-position +50 times
                 t.setVelocity(t.getVelocity().clone().add(new Vector(0, 0, 50)));
@@ -144,7 +144,7 @@ public class Command_hell {
                 });
                 
                 // force chat
-                t.chat("No!");
+                t.chat("Oh no! SORRY!");
             }
         }.runTaskLater(plugin, 3L * 20L);
         
@@ -156,9 +156,13 @@ public class Command_hell {
                 Bukkit.getOnlinePlayers().stream().map((player) -> {
                     player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
                     return player;
+                }).map((player) -> {
+                    player.playSound(player.getLocation(), Sound.AMBIENT_CAVE, 100, 2);
+                    return player;
                 }).forEachOrdered((player) -> {
                     player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 100, 2);
                 });
+                
                 // shoot player into sky
                 t.setVelocity(t.getVelocity().clone().add(new Vector(0, 50, 0)));
                 
@@ -172,19 +176,25 @@ public class Command_hell {
                 t.chat("Please " + p.getName() + "! I'm so sorry for my stupid behaviour!");
                 t.chat("Please do not call Satan upon me!! :(");
                 p.chat("It's too late. Good day sir.");
+                p.chat("No apologies and exceptions, bye!");
             }
         }.runTaskLater(plugin, 4L * 20L);
         
         new BukkitRunnable() {
             @Override
             public void run() {
-                
-                for (int i = 0; i < 50; i++) {
-                    t.getWorld().strikeLightning(t.getLocation());
-                }
-                
+
+                t.getWorld().strikeLightning(t.getLocation());
                 t.setFireTicks(10000);
                 Bukkit.broadcastMessage(ChatColor.DARK_RED + t.getName() + " has been sent to hell!");
+
+                Bukkit.getOnlinePlayers().stream().map((player) -> {
+                    player.playSound(player.getLocation(), Sound.ENTITY_WOLF_HOWL, 100, 2);
+                    return player;
+                }).forEachOrdered((player) -> {
+                    player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 100, 2);
+                });
+                               
                 
                 if (t.isOp() == false) {
                     bl = Bukkit.getBanList(BanList.Type.NAME);

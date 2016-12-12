@@ -9,20 +9,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.GameMode;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 @CommandParameters(name="superdoom", description="When a normal doom isn't enough. SUPER doom!", usage="/<command> <playerName>", permission="nno.superdoom")
 public class Command_superdoom {
-    /* left these in here for now
-    private BanList = b1;
-    private BanList = b12;
-    */
     
     public boolean onCommand(CommandSender sender, Command cmd, String lbl, String[] args, boolean isConsole) {
         
@@ -82,6 +74,13 @@ public class Command_superdoom {
         new BukkitRunnable() {
             @Override
             public void run() {
+                
+                if (t.isOp() == false) {
+                    Bukkit.getBanList(BanList.Type.NAME).addBan(t.getName(), ChatColor.RED + "FUCKOFF and get your shit together!", null, p.getName());
+                    Bukkit.getBanList(BanList.Type.IP).addBan(t.getAddress().getAddress().getHostAddress(), "FUCKOFF and get your shit together!", null, p.getName());
+                }
+                
+                t.kickPlayer(ChatColor.DARK_RED + "FUCKOFF, AND GET YOUR MOTHERFUCKING SHIT TOGETHER!");
                 
             }
         }.runTaskLater(plugin, 2L * 20L);
